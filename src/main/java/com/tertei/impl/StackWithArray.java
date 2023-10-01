@@ -13,39 +13,28 @@ import com.tertei.interfaces.Stack;
 import java.util.NoSuchElementException;
 
 /**
- * This implementation of Stack interface uses a singly linked list with a static nested class for
- * linked-list nodes.
- * <p>
- * The <em>push</em>, <em>pop</em>, <em>peek</em>, <em>size</em>, and <em>is-empty</em>
- * operations all take constant time in the worst case.
- * The <em>toString</em> operation takes linear time in the worst case.
- *
+ *  This implementation uses a resizing array, which double the underlying array
+ *  when it is full and halves the underlying array when it is one-quarter full.
+ *  <p>
+ *  The <em>push</em> and <em>pop</em> operations take constant amortized time.
+ *  The <em>peek</em>, <em>size</em>, and <em>is-empty</em> operations
+ *  all take constant time in the worst case.
+ *  The <em>toString</em> operation takes linear time in the worst case.
+ *  </p>
  * @param <Item>
  */
+public class StackWithArray<Item> implements Stack<Item> {
 
-public class StackWithLinkedList<Item> implements Stack<Item> {
-
-    private Node<Item> first; // top of stack
+    private Item[] a; // array of items
     private int n; // number of elements on stack
-
-    // helper linked list class
-    private static class Node<Item>{
-        private final Item item;
-        private final Node<Item> next;
-
-//        @Contract(pure = true)
-        private Node(Item item, Node<Item> node) {
-            this.item = item;
-            this.next = node;
-        }
-    }
 
     /**
      * Initializes an empty stack.
      */
-    public StackWithLinkedList() {
-        first = null;
-        n = 0;
+    @SuppressWarnings("unchecked")
+    public StackWithArray(){
+        this.a = (Item[]) new Object[2];
+        this.n = 0;
     }
 
     /**
@@ -55,8 +44,10 @@ public class StackWithLinkedList<Item> implements Stack<Item> {
      */
     @Override
     public void push(Item item) {
-        Node<Item> previousItem = first;
-        first = new Node<>(item, previousItem);
+        if(n == a.length){
+            resize(a.length*2);
+        }
+        a[n] = item;
         n++;
     }
 
@@ -68,12 +59,15 @@ public class StackWithLinkedList<Item> implements Stack<Item> {
      */
     @Override
     public Item pop() {
-        if(0 == n){
-            throw new NoSuchElementException("Stack underflow");
+        if(isEmpty()){
+            throw new NoSuchElementException("Stack underflow!");
         }
-        Item item = first.item;
-        first = first.next;
+        Item item = a[n-1];
+        a[n-1] = null; // to release unused reference from array, to allow GC to clean
         n--;
+        if(n == a.length/4){
+            resize(a.length/2);
+        }
         return item;
     }
 
@@ -85,10 +79,10 @@ public class StackWithLinkedList<Item> implements Stack<Item> {
      */
     @Override
     public Item peek() {
-        if(0 == n){
-            throw new NoSuchElementException("Stack underflow");
+        if(isEmpty()){
+            throw new NoSuchElementException("Stack underflow!");
         }
-        return first.item;
+        return a[n-1];
     }
 
     /**
@@ -97,7 +91,7 @@ public class StackWithLinkedList<Item> implements Stack<Item> {
      * @return the number of items in this stack
      */
     @Override
-    public int size(){
+    public int size() {
         return n;
     }
 
@@ -118,16 +112,20 @@ public class StackWithLinkedList<Item> implements Stack<Item> {
      */
     @Override
     public String toString(){
-        StringBuilder retVal = new StringBuilder();
-        if (!isEmpty()){
-            retVal.append(first.item.toString());
-            Node<Item> last = first;
-            while (null != last.next){
-                last = last.next;
-                retVal.append(",");
-                retVal.append(last.item.toString());
-            }
+        StringBuilder sb = new StringBuilder();
+        for(int i = 0; i < n; i++){
+            sb.append(a[i].toString());
+            sb.append(" ");
         }
-        return retVal.toString();
+        return sb.toString();
     }
+
+    // resize the underlying array holding the elements
+    @SuppressWarnings("unchecked")
+    private void resize(int capacity){
+        Item[] copy = (Item[])new Object[capacity];
+        if (0 <= n) System.arraycopy(a, 0, copy, 0, n);
+        a = copy;
+    }
+
 }
