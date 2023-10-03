@@ -6,6 +6,15 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v1.1.0] - 2023-10-03
+
+### Added
+
+- Queue interface
+- Implementation of queue interface using linked list
+- Implementation of queue interface using resizable array
+- Unit tests for Queue interface
+
 ## [v1.0.1] - 2023-09-30
 
 ### Added

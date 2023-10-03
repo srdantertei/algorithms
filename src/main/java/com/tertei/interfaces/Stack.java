@@ -14,7 +14,7 @@ import java.util.NoSuchElementException;
 /**
  * The {@code Stack} interface represents a last-in-first-out (LIFO) stack of generic items.
  * It supports the usual <em>push</em> and <em>pop</em> operations, along with methods
- * for peeking at the top item, testing if the stack is empty,
+ * for peeking at the top item, testing if the stack is empty, number of elements in stack
  * and returns a string representation of the stack.
  *
  * @author Srdan Tertei
@@ -37,7 +37,7 @@ public interface Stack<Item> {
      * @return the item most recently added
      * @throws NoSuchElementException if this stack is empty
      */
-    Item pop();
+    Item pop() throws NoSuchElementException;
 
     /**
      * Returns (but does not remove) the item most recently added to this stack.
@@ -45,7 +45,7 @@ public interface Stack<Item> {
      * @return the item most recently added to this stack
      * @throws NoSuchElementException if this stack is empty
      */
-    Item peek();
+    Item peek() throws NoSuchElementException;
 
     /**
      * Returns the number of items in this stack.

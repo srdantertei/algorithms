@@ -67,8 +67,8 @@ public class StackWithLinkedList<Item> implements Stack<Item> {
      * @throws NoSuchElementException if this stack is empty
      */
     @Override
-    public Item pop() {
-        if(0 == n){
+    public Item pop() throws NoSuchElementException{
+        if(isEmpty()){
             throw new NoSuchElementException("Stack underflow");
         }
         Item item = first.item;
@@ -84,8 +84,8 @@ public class StackWithLinkedList<Item> implements Stack<Item> {
      * @throws NoSuchElementException if this stack is empty
      */
     @Override
-    public Item peek() {
-        if(0 == n){
+    public Item peek() throws NoSuchElementException{
+        if(isEmpty()){
             throw new NoSuchElementException("Stack underflow");
         }
         return first.item;
