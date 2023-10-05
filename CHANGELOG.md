@@ -6,6 +6,15 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v1.2.0] - 2023-10-05
+
+### Added
+
+- Bag interface
+- Implementation of bag interface using linked list
+- Implementation of bag interface using resizable array
+- Unit tests for Bag interface
+
 ## [v1.1.0] - 2023-10-03
 
 ### Added

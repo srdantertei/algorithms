@@ -7,6 +7,8 @@ The purpose of this project is to practice:
 - test driven development with unit tests
 - writing comments for javadoc
 - versioning
+- generics
+- iterators
  
 
 ## Versioning
