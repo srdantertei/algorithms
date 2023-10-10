@@ -1,8 +1,8 @@
-package com.tertei.tests.interfaces;
+package com.tertei.tests.datastructures.interfaces;
 
-import com.tertei.impl.BagWithArray;
-import com.tertei.impl.BagWithLinkedList;
-import com.tertei.interfaces.Bag;
+import com.tertei.datastructures.impl.BagWithArray;
+import com.tertei.datastructures.impl.BagWithLinkedList;
+import com.tertei.datastructures.interfaces.Bag;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
@@ -16,6 +16,8 @@ public class BagUnitTest {
     private static final String EXPECTED_TRUE = "Expected returned value for method isEmpty is true, but it returned false!";
     private static final String EXPECTED_FALSE = "Expected returned value for method isEmpty is false, but it returned true!";
     private static final String EXPECTED_BAG_SIZE = "Expected bag size is %d but actual value is %d";
+
+    // Types of bag implementations
     private final String[] bagTypes= {"withLinkedList", "withArray"};
 
     /**
@@ -74,6 +76,7 @@ public class BagUnitTest {
         }
     }
 
+    // Factory design pattern: returns instance of implementation class depending on input parameter
     private static class BagFactory<Item> {
         private Bag<Item> getBag(final String bagType){
             if(null == bagType)

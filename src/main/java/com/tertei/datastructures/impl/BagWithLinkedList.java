@@ -7,35 +7,44 @@
  * Original source: https://algs4.cs.princeton.edu/code/
  */
 
-package com.tertei.impl;
+package com.tertei.datastructures.impl;
 
-import com.tertei.interfaces.Bag;
+import com.tertei.datastructures.interfaces.Bag;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 /**
- * This implementation of Bag interface uses resizing array, which double the underlying array
- * when it is full and halves the underlying array when it is one-quarter full.
+ * This implementation of Bag interface uses a singly linked list with a static nested class for
+ * linked-list nodes.
  * <p>
- * The <em>add</em> operation takes constant amortized time.
- * The <em>size</em>, and <em>is-empty</em> operations all take constant time in the worst case.
+ * The <em>add</em>, <em>size</em>, and <em>is-empty</em>
+ * operations all take constant time in the worst case.
  * The <em>toString</em> and <em>iterator</em> operations all take linear time in the worst case.
  *
  * @param <Item>
  */
-public class BagWithArray<Item> implements Bag<Item> {
+public class BagWithLinkedList<Item> implements Bag<Item> {
 
-    private Item[] a; // array of items
+    private Node<Item> first; // reference to first element in bag
     private int n; // number of items in bag
 
     /**
      * Initializes an empty bag.
      */
-    @SuppressWarnings("unchecked")
-    public BagWithArray(){
-        this.a = (Item[]) new Object[2];
+    public BagWithLinkedList(){
         n = 0;
+    }
+
+    // helper linked list class
+    private static class Node<Item>{
+        private final Item item;
+        private Node<Item> next;
+
+        private Node(Item item){
+            this.item = item;
+            this.next = null;
+        }
     }
 
     /**
@@ -45,10 +54,9 @@ public class BagWithArray<Item> implements Bag<Item> {
      */
     @Override
     public void add(Item item) {
-        if(n == a.length){
-            resize(a.length*2);
-        }
-        a[n] = item;
+        Node<Item> previousFirst = first;
+        first = new Node<>(item);
+        first.next = previousFirst;
         n++;
     }
 
@@ -78,13 +86,18 @@ public class BagWithArray<Item> implements Bag<Item> {
      * @return the sequence of items in this bag, separated by spaces
      */
     @Override
-    public String toString(){
-        StringBuilder sb = new StringBuilder();
-        for(int i = 0; i < n; i++){
-            sb.append(a[i].toString());
-            sb.append(" ");
+    public String toString() {
+        StringBuilder retVal = new StringBuilder();
+        if (!isEmpty()){
+            retVal.append(first.item.toString());
+            BagWithLinkedList.Node<Item> last = first;
+            while (null != last.next){
+                last = last.next;
+                retVal.append(",");
+                retVal.append(last.item.toString());
+            }
         }
-        return sb.toString();
+        return retVal.toString();
     }
 
     /**
@@ -94,20 +107,20 @@ public class BagWithArray<Item> implements Bag<Item> {
      */
     @Override
     public Iterator<Item> iterator() {
-        return new ArrayIterator();
+        return new ListIterator(first);
     }
 
-    private class ArrayIterator implements Iterator<Item>{
+    private class ListIterator implements Iterator<Item>{
 
-        private int current; //position of iterator
+        private Node<Item> current;
 
-        public ArrayIterator(){
-            current = 0;
+        public ListIterator(Node<Item> first) {
+            this.current = first;
         }
 
         @Override
         public boolean hasNext() {
-            return current < n;
+            return current != null;
         }
 
         @Override
@@ -115,15 +128,9 @@ public class BagWithArray<Item> implements Bag<Item> {
             if(!hasNext()){
                 throw new NoSuchElementException("There is no more elements in bag!");
             }
-            return a[current++];
+            Item item = current.item;
+            current = current.next;
+            return item;
         }
-    }
-
-    // resize the underlying array holding the elements
-    @SuppressWarnings("unchecked")
-    private void resize(int capacity){
-        Item[] copy = (Item[])new Object[capacity];
-        if (0 <= n) System.arraycopy(a, 0, copy, 0, n);
-        a = copy;
     }
 }

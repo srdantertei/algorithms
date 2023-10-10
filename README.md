@@ -9,6 +9,7 @@ The purpose of this project is to practice:
 - versioning
 - generics
 - iterators
+- comparators
  
 
 ## Versioning
@@ -21,7 +22,7 @@ This project follows Semantic Versioning (SemVer). The version number is in the 
 
 ### Current Version
 
-The current version of this project is **v1.2.2**.
+The current version of this project is **v2.0.0**.
 
 ### Installation
 
@@ -34,5 +35,5 @@ include the following dependency in your `pom.xml`:
 <dependency>
     <groupId>com.tertei</groupId>
     <artifactId>algorithms</artifactId>
-    <version>1.2.2</version>
+    <version>2.0.0</version>
 </dependency>

@@ -1,8 +1,8 @@
-package com.tertei.tests.interfaces;
+package com.tertei.tests.datastructures.interfaces;
 
-import com.tertei.impl.StackWithArray;
-import com.tertei.impl.StackWithLinkedList;
-import com.tertei.interfaces.Stack;
+import com.tertei.datastructures.impl.StackWithArray;
+import com.tertei.datastructures.impl.StackWithLinkedList;
+import com.tertei.datastructures.interfaces.Stack;
 import org.junit.jupiter.api.Test;
 import java.util.NoSuchElementException;
 import static org.junit.jupiter.api.Assertions.*;
@@ -17,6 +17,8 @@ class StackUnitTests {
     private static final String EXPECTED_STACK_SIZE = "Expected stack size is %d but actual value is %d";
     private static final String EXPECTED_VALUE = "Expected value is %d but actual is %d";
     private static final String EXPECTED_NO_SUCH_ELEMENT_EXCEPTION = "Expected NoSuchElementException to be thrown!";
+
+    // Types of stack implementations
     private final String[] stackTypes= {"withLinkedList", "withArray"};
 
     /**
@@ -97,7 +99,7 @@ class StackUnitTests {
         }
     }
 
-    // Factory design pattern to return instance of implementation class depending on input parameter
+    // Factory design pattern: returns instance of implementation class depending on input parameter
     private static class StackFactory<Item> {
         private Stack<Item> getStack(final String stackType){
             if(null == stackType)

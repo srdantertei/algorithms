@@ -7,9 +7,9 @@
  * Original source: https://algs4.cs.princeton.edu/code/
  */
 
-package com.tertei.impl;
+package com.tertei.datastructures.impl;
 
-import com.tertei.interfaces.Queue;
+import com.tertei.datastructures.interfaces.Queue;
 import java.util.NoSuchElementException;
 
 /**
@@ -34,6 +34,7 @@ public class QueueWithArray<Item> implements Queue<Item> {
     /**
      * Initializes an empty queue.
      */
+    @SuppressWarnings("unchecked")
     public QueueWithArray(){
         a = (Item[])new Object[2];
         head = 0;

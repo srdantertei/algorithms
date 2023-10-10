@@ -7,7 +7,7 @@
  * Original source: https://algs4.cs.princeton.edu/code/
  */
 
-package com.tertei.interfaces;
+package com.tertei.datastructures.interfaces;
 
 import java.util.NoSuchElementException;
 

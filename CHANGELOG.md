@@ -6,17 +6,34 @@
 
 All notable changes to this project will be documented in this file.
 
+
+## [v2.0.0] - 2023-10-09
+
+### backward-incompatible changes
+
+- added new level into the path to classes to group code from the same topic together 
+
+## Added
+
+- Sortable interface
+- implementation of Selection sort
+- Sort Helpers class
+- Unit tests for sorts
+
+
 ## [v1.2.2] - 2023-10-05
 
 ### Fixed
 
 - Versioning in POM file
 
+
 ## [v1.2.1] - 2023-10-05
 
 ### Fixed
 
 - Versioning in README file
+
 
 ## [v1.2.0] - 2023-10-05
 
@@ -27,6 +44,7 @@ All notable changes to this project will be documented in this file.
 - Implementation of bag interface using resizable array
 - Unit tests for Bag interface
 
+
 ## [v1.1.0] - 2023-10-03
 
 ### Added
@@ -35,6 +53,7 @@ All notable changes to this project will be documented in this file.
 - Implementation of queue interface using linked list
 - Implementation of queue interface using resizable array
 - Unit tests for Queue interface
+
 
 ## [v1.0.1] - 2023-09-30
 

@@ -7,10 +7,10 @@
  * Original source: https://algs4.cs.princeton.edu/code/
  */
 
-package com.tertei.interfaces;
+package com.tertei.datastructures.interfaces;
 
 /**
- * The {@code Bag} class represents a bag (or multiset) of
+ * The {@code Bag} interface represents a bag (or multiset) of
  * generic items. It supports insertion and iterating over the
  * items in arbitrary order.
  *

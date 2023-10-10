@@ -1,8 +1,8 @@
-package com.tertei.tests.interfaces;
+package com.tertei.tests.datastructures.interfaces;
 
-import com.tertei.impl.QueueWithArray;
-import com.tertei.impl.QueueWithLinkedList;
-import com.tertei.interfaces.Queue;
+import com.tertei.datastructures.impl.QueueWithArray;
+import com.tertei.datastructures.impl.QueueWithLinkedList;
+import com.tertei.datastructures.interfaces.Queue;
 import org.junit.jupiter.api.Test;
 
 import java.util.NoSuchElementException;
@@ -16,6 +16,8 @@ public class QueueUnitTests {
     private static final String EXPECTED_QUEUE_SIZE = "Expected queue size is %d but actual value is %d";
     private static final String EXPECTED_VALUE = "Expected value is %d but actual is %d";
     private static final String EXPECTED_NO_SUCH_ELEMENT_EXCEPTION = "Expected NoSuchElementException to be thrown!";
+
+    // Types of queue implementations
     private final String[] queueTypes= {"withLinkedList", "withArray"};
 
     /**
@@ -96,7 +98,7 @@ public class QueueUnitTests {
         }
     }
 
-    // Factory design pattern to return instance of implementation class depending on input parameter
+    // Factory design pattern: returns instance of implementation class depending on input parameter
     private static class QueueFactory<Item> {
         private Queue<Item> getQueue(final String queueType){
             if(null == queueType)
