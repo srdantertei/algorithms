@@ -22,7 +22,7 @@ import com.tertei.sorts.interfaces.Sortable;
  *  This sorting algorithm is not stable. It uses &Theta;(1) extra memory
  *  (not including the input array).
  *  <p>
- * @param <Item>
+ *  @param <Item>
  */
 public class SelectionSort<Item extends Comparable<Item>> implements Sortable<Item> {
 

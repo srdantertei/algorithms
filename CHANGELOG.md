@@ -6,6 +6,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v2.1.0] - 2023-10-09
+
+### Added
+
+- implementation of Insertion sort
 
 ## [v2.0.0] - 2023-10-09
 
@@ -13,7 +18,7 @@ All notable changes to this project will be documented in this file.
 
 - added new level into the path to classes to group code from the same topic together 
 
-## Added
+### Added
 
 - Sortable interface
 - implementation of Selection sort

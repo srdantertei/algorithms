@@ -1,5 +1,6 @@
 package com.tertei.tests.sorts.interfaces;
 
+import com.tertei.sorts.impl.InsertionSort;
 import com.tertei.sorts.impl.SelectionSort;
 import com.tertei.sorts.interfaces.Sortable;
 import org.junit.jupiter.api.BeforeEach;
@@ -10,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class SortableUnitTests {
 
     // Types of sort algorithms
-    private final String[] sortAlgorithms= {"SelectionSort"};
+    private final String[] sortAlgorithms= {"SelectionSort","InsertionSort"};
 
     // Object that implements comparable interface
     private class SortItem implements Comparable<SortItem>{
@@ -58,6 +59,8 @@ public class SortableUnitTests {
                 return null;
             if("SelectionSort".equalsIgnoreCase(sortableName))
                 return new SelectionSort<>();
+            if("InsertionSort".equalsIgnoreCase(sortableName))
+                return new InsertionSort<>();
             else return null;
         }
     }
