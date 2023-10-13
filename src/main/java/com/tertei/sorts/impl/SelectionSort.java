@@ -22,9 +22,8 @@ import com.tertei.sorts.interfaces.Sortable;
  *  This sorting algorithm is not stable. It uses &Theta;(1) extra memory
  *  (not including the input array).
  *  <p>
- *  @param <Item>
  */
-public class SelectionSort<Item extends Comparable<Item>> implements Sortable<Item> {
+public class SelectionSort implements Sortable {
 
     /**
      * Sort array of objects in natural order using Selection sort algorithm
@@ -32,7 +31,7 @@ public class SelectionSort<Item extends Comparable<Item>> implements Sortable<It
      * @param a Array of objects that implements Comparable interface.
      */
     @Override
-    public void sort(Item[] a) {
+    public void sort(Comparable[] a) {
         int N = a.length;
         for(int i = 0; i < N; i++){
             int min = i;

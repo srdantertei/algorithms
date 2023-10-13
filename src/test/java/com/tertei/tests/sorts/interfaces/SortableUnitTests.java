@@ -1,6 +1,7 @@
 package com.tertei.tests.sorts.interfaces;
 
 import com.tertei.sorts.impl.InsertionSort;
+import com.tertei.sorts.impl.MergeSort;
 import com.tertei.sorts.impl.SelectionSort;
 import com.tertei.sorts.interfaces.Sortable;
 import org.junit.jupiter.api.BeforeEach;
@@ -11,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class SortableUnitTests {
 
     // Types of sort algorithms
-    private final String[] sortAlgorithms= {"SelectionSort","InsertionSort"};
+    private final String[] sortAlgorithms= {"SelectionSort","InsertionSort","MergeSort"};
 
     // Object that implements comparable interface
     private class SortItem implements Comparable<SortItem>{
@@ -46,7 +47,7 @@ public class SortableUnitTests {
     public void testSorts(){
         final SortableFactory<SortItem> sortableFactory = new SortableFactory<>();
         for(String sortAlgorithm : sortAlgorithms) {
-            Sortable<SortItem> sorter = sortableFactory.getSortable(sortAlgorithm);
+            Sortable sorter = sortableFactory.getSortable(sortAlgorithm);
             sorter.sort(testArray);
             assertTrue(isSorted(testArray));
         }
@@ -54,13 +55,15 @@ public class SortableUnitTests {
 
     // Factory design pattern: returns instance of implementation class depending on input parameter
     private static class SortableFactory<Item extends Comparable<Item>>{
-        private Sortable<Item> getSortable(final String sortableName){
+        private Sortable getSortable(final String sortableName){
             if(null == sortableName)
                 return null;
             if("SelectionSort".equalsIgnoreCase(sortableName))
-                return new SelectionSort<>();
+                return new SelectionSort();
             if("InsertionSort".equalsIgnoreCase(sortableName))
-                return new InsertionSort<>();
+                return new InsertionSort();
+            if("MergeSort".equalsIgnoreCase(sortableName))
+                return new MergeSort();
             else return null;
         }
     }

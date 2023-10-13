@@ -14,14 +14,12 @@ package com.tertei.sorts.interfaces;
  * Result will be sorted in natural order
  *
  * @author Srdan Tertei
- *
- * @param <Item>
  */
-public interface Sortable<Item extends Comparable<Item>> {
+public interface Sortable {
     /**
      * Sort array of objects in natural order
      *
      * @param items Array of objects that implements Comparable interface.
      */
-    void sort(Item[] items);
+    void sort(Comparable[] items);
 }

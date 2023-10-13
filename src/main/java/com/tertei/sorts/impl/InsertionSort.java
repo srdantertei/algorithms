@@ -25,9 +25,8 @@ import com.tertei.sorts.interfaces.Sortable;
  *  This sorting algorithm is stable.
  *  It uses &Theta;(1) extra memory (not including the input array).
  *  <p>
- *  @param <Item>
  */
-public class InsertionSort<Item extends Comparable<Item>> implements Sortable<Item> {
+public class InsertionSort implements Sortable {
 
     /**
      * Sort array of objects in natural order using Insertion sort algorithm
@@ -35,7 +34,7 @@ public class InsertionSort<Item extends Comparable<Item>> implements Sortable<It
      * @param a Array of objects that implements Comparable interface.
      */
     @Override
-    public void sort(Item[] a) {
+    public void sort(Comparable[] a) {
         int N = a.length;
         for(int i = 1; i < N; i++){
             // take element and move it left till left side is sorted

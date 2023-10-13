@@ -6,7 +6,18 @@
 
 All notable changes to this project will be documented in this file.
 
-## [v2.1.0] - 2023-10-09
+## [v2.2.0] - 2023-10-12
+
+### Added
+
+- implementation of Mergesort
+
+### Changes
+
+- direct usage of Comparable interface
+
+
+## [v2.1.0] - 2023-10-10
 
 ### Added
 
