@@ -26,4 +26,12 @@ public class SortHelpers {
         a[i] = a[j];
         a[j] = swap;
     }
+
+    static void shuffle(Comparable[] a){
+        int N = a.length;
+        for (int i = 0; i < N; i++){
+            int r = (int)((i + 1.0) * Math.random());
+            exch(a, i, r);
+        }
+    }
 }

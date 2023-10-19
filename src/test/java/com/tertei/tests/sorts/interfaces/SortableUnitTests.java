@@ -2,6 +2,7 @@ package com.tertei.tests.sorts.interfaces;
 
 import com.tertei.sorts.impl.InsertionSort;
 import com.tertei.sorts.impl.MergeSort;
+import com.tertei.sorts.impl.QuickSort;
 import com.tertei.sorts.impl.SelectionSort;
 import com.tertei.sorts.interfaces.Sortable;
 import org.junit.jupiter.api.BeforeEach;
@@ -12,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class SortableUnitTests {
 
     // Types of sort algorithms
-    private final String[] sortAlgorithms= {"SelectionSort","InsertionSort","MergeSort"};
+    private final String[] sortAlgorithms= {"SelectionSort","InsertionSort","MergeSort","QuickSort"};
 
     // Object that implements comparable interface
     private class SortItem implements Comparable<SortItem>{
@@ -47,6 +48,7 @@ public class SortableUnitTests {
     public void testSorts(){
         final SortableFactory<SortItem> sortableFactory = new SortableFactory<>();
         for(String sortAlgorithm : sortAlgorithms) {
+            System.out.println("Tested algorithm: " + sortAlgorithm);
             Sortable sorter = sortableFactory.getSortable(sortAlgorithm);
             sorter.sort(testArray);
             assertTrue(isSorted(testArray));
@@ -64,6 +66,8 @@ public class SortableUnitTests {
                 return new InsertionSort();
             if("MergeSort".equalsIgnoreCase(sortableName))
                 return new MergeSort();
+            if("QuickSort".equalsIgnoreCase(sortableName))
+                return new QuickSort();
             else return null;
         }
     }

@@ -6,6 +6,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v2.2.0] - 2023-10-18
+
+### Added
+
+- implementation of Quicksort
+
 ## [v2.2.0] - 2023-10-12
 
 ### Added
