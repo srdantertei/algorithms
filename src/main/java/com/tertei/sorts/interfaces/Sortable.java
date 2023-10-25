@@ -21,5 +21,7 @@ public interface Sortable {
      *
      * @param items Array of objects that implements Comparable interface.
      */
-    void sort(Comparable[] items);
+    static void sort(Comparable[] items){
+        System.out.println("This is a static method in the interface.");
+    }
 }

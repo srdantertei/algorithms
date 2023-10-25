@@ -33,8 +33,8 @@ public class InsertionSort implements Sortable {
      *
      * @param a Array of objects that implements Comparable interface.
      */
-    @Override
-    public void sort(Comparable[] a) {
+
+    public static void sort(Comparable[] a) {
         int N = a.length;
         for(int i = 1; i < N; i++){
             // take element and move it left till left side is sorted

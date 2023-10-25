@@ -22,7 +22,7 @@ This project follows Semantic Versioning (SemVer). The version number is in the 
 
 ### Current Version
 
-The current version of this project is **v2.3.0**.
+The current version of this project is **v3.0.0**.
 
 ### Installation
 
@@ -35,5 +35,5 @@ include the following dependency in your `pom.xml`:
 <dependency>
     <groupId>com.tertei</groupId>
     <artifactId>algorithms</artifactId>
-    <version>2.3.0</version>
+    <version>3.0.0</version>
 </dependency>

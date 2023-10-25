@@ -6,6 +6,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v3.0.0] - 2023-10-24
+
+### backward-incompatible changes
+
+- sort method is changed to be static
+- Factory design in unit test is replaced with reflection
+
 ## [v2.2.0] - 2023-10-18
 
 ### Added

@@ -1,22 +1,21 @@
 package com.tertei.tests.sorts.interfaces;
 
-import com.tertei.sorts.impl.InsertionSort;
-import com.tertei.sorts.impl.MergeSort;
-import com.tertei.sorts.impl.QuickSort;
-import com.tertei.sorts.impl.SelectionSort;
 import com.tertei.sorts.interfaces.Sortable;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.lang.reflect.Method;
+
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 
 public class SortableUnitTests {
 
     // Types of sort algorithms
-    private final String[] sortAlgorithms= {"SelectionSort","InsertionSort","MergeSort","QuickSort"};
+    private final String[] sortAlgorithms= {"com.tertei.sorts.impl.SelectionSort","com.tertei.sorts.impl.InsertionSort","com.tertei.sorts.impl.MergeSort","com.tertei.sorts.impl.QuickSort"};
 
     // Object that implements comparable interface
-    private class SortItem implements Comparable<SortItem>{
+    private static class SortItem implements Comparable<SortItem>{
         private final int key;
 
         public SortItem(int key) {
@@ -25,11 +24,7 @@ public class SortableUnitTests {
 
         @Override
         public int compareTo(SortItem o) {
-            if (this.key < o.key)
-                return -1;
-            if (this.key > o.key)
-                return 1;
-            return 0;
+            return Integer.compare(this.key, o.key);
         }
     }
 
@@ -46,30 +41,30 @@ public class SortableUnitTests {
      */
     @Test
     public void testSorts(){
-        final SortableFactory<SortItem> sortableFactory = new SortableFactory<>();
         for(String sortAlgorithm : sortAlgorithms) {
             System.out.println("Tested algorithm: " + sortAlgorithm);
-            Sortable sorter = sortableFactory.getSortable(sortAlgorithm);
-            sorter.sort(testArray);
+            try {
+                Class<?> factoryClass = getClassByName(sortAlgorithm);
+                if(Sortable.class.isAssignableFrom(factoryClass)){
+                    try{
+                        // Get the method
+                        Method method = factoryClass.getMethod("sort", Comparable[].class);
+
+                        // Invoke the static method with the testArray as parameter
+                        method.invoke(null, (Object) testArray);
+                    } catch(Exception e){
+                        fail();
+                    }
+                }
+            } catch (ClassNotFoundException e) {
+                fail();
+            }
             assertTrue(isSorted(testArray));
         }
     }
 
-    // Factory design pattern: returns instance of implementation class depending on input parameter
-    private static class SortableFactory<Item extends Comparable<Item>>{
-        private Sortable getSortable(final String sortableName){
-            if(null == sortableName)
-                return null;
-            if("SelectionSort".equalsIgnoreCase(sortableName))
-                return new SelectionSort();
-            if("InsertionSort".equalsIgnoreCase(sortableName))
-                return new InsertionSort();
-            if("MergeSort".equalsIgnoreCase(sortableName))
-                return new MergeSort();
-            if("QuickSort".equalsIgnoreCase(sortableName))
-                return new QuickSort();
-            else return null;
-        }
+    private static Class<?>  getClassByName(String className) throws ClassNotFoundException {
+        return Class.forName(className);
     }
 
     // test if array is sorted

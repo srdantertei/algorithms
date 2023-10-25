@@ -30,8 +30,8 @@ public class SelectionSort implements Sortable {
      *
      * @param a Array of objects that implements Comparable interface.
      */
-    @Override
-    public void sort(Comparable[] a) {
+
+    public static void sort(Comparable[] a) {
         int N = a.length;
         for(int i = 0; i < N; i++){
             int min = i;
